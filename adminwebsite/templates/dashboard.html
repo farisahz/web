@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
+    <!-- styling -->
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #CEE5D0;
+}
+
+h2 {
+    font: 18px;
+    padding: 15px 0;
+}
+
+h2 > span {
+    font-size: 16px;
+}
+/* -------------------------------------------- */
+.navbar {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 55px;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 2;
+    padding-left: 6rem;
+}
+
+.search-box {
+    height: 50px;
+    width: 550px;
+    margin: 0 20px;
+    position: relative;
+}
+
+.search-box input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    padding: 0 15px;
+    font-size: 17px;
+    background: #F5F6FA;
+    border: 2px solid #efeef1;
+    outline: none;
+}
+
+.search-box .fa-search {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 40px;
+    width: 40px;
+    background: #2697ff;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 22px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.profile {
+    display: flex;
+    width: 32%;
+    max-width: 200px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-name {
+    font-size: 0.9rem;
+    margin-left: -20px;
+}
+
+.side-toggle {
+    position: fixed;
+    z-index: 2;
+    top: 14px;
+    left: 25px;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#toggle {
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 215px;
+    left: 0;
+    top: 0;
+    padding: 80px 0 20px 0;
+    color: #fff;
+    background-color: #39A388;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-brand > p {
+    height: 90px;
+    padding: 1rem 0rem 1rem 2rem;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.sidebar-menu {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar-menu > span {
+    font-size: 25px;
+    padding-right: 30px;
+}
+
+.sidebar .sidebar-menu >p > a {
+    color: #fff;
+    background-color: #39A388;
+    /*box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);*/
+    text-decoration: none;
+}
+
+.sidebar-menu:hover {
+    color: #39A388;
+    background-color: #f8f8fb;
+}
+
+#toggle:checked ~ .sidebar {
+    width: 70px;
+}
+
+#toggle:checked ~ .sidebar .sidebar-menu > p {
+    display: none;
+}
+
+#toggle:checked ~ .sidebar .sidebar-brand > p {
+    display: none;
+}
+
+#toggle:checked ~ main {
+    padding: 6rem 2rem 2rem 6rem;
+}
+/*----------------------------------------------------------------- */
+main {
+    min-height: 100%;
+    padding: 6rem 1rem 2rem 14rem;
+    color: #201f2b;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.5fr 0.5fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    grid-template-areas: 
+    "total1 total2 total3";
+}
+
+.card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.total1 {
+    grid-area: total1;
+    background-color: #2d972e;
+    color: #fff;
+}
+
+.total2 {
+    grid-area: total2;
+    background-color: #ffa705;
+    color: #fff;
+}
+
+.total3 {
+    grid-area: total3;
+    background-color: #9132bd;
+    color: #fff;
+}
+
+.info {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-detail h2 {
+    font-size: 24px;
+}
+
+.info-detail p {
+    font-size: 14px;
+}
+
+.info-image {
+    font-size: 50px;
+    margin-right: 1rem;
+}
+
+.recent-grid{
+    margin-top: 3.5rem;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: 67% auto;
+}
+
+.car {
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.car-header,
+.car-body{
+    padding: 1rem;
+}
+
+.car-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3D56B2;
+    background-color: #90AACB;
+    
+}
+table {
+    border-collapse: collapse;
+}
+
+.car-body table tr:hover{
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #2d2b98;
+}
+
+thead tr {
+    border-top: 1px solid #3D56B2;
+    border-bottom: 2px solid #3D56B2;
+}
+
+thead td{
+    font-weight: 700;
+}
+
+td {
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+
+tr td:last-child {
+    display: flex;
+    align-items: center;
+}
+
+/* make responsive */
+
+@media screen and (max-width: 980px) {
+    .dashboard-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "total1 total2"
+        "total3";
+    }
+
+    .recent-grid {
+        grid-template-columns: 60% 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .recent-grid {
+        grid-template-columns: 100%;
+    }
+}
+@media screen and (max-width: 480px){
+    .profile-name{
+        display: none;
+    }
+    .sidebar {
+        display:none;
+    }
+    main{
+        padding: 6rem 2rem 2rem 2rem;
+    }
+
+    #toggle:checked ~ .sidebar {
+        width: 200px;
+        display: block;
+    }
+
+    #toggle:checked ~ .sidebar .sidebar-menu > p {
+        display: block;
+    }
+
+    #toggle:checked ~ main {
+        padding: 6rem 2rem 2rem 2rem;
+    }
+    
+    .dashboard-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "total1"
+        "total2"
+        "total3";
+    }
+
+    .info-detail table {
+        font-size: 0.9rem;
+    }
+}
+    </style>
+
+    <!-- font: Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+
+    <!-- icons: Font Awesome 5.15-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Dashboard Pmj Scan'n Go Website</title>
+</head>
+
+<body>
+    
+    <!-- navbar -->
+    <nav class="navbar">
+        
+        <h4>Dashboard</h4>
+        
+        
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+                
+
+        <div class="profile">
+            <img class="profile-image"
+                src="https://image.shutterstock.com/image-vector/cute-young-man-avatar-character-260nw-1904128123.jpg">
+            <p class="profile-name">{{SignUpForm.username}}</p>
+            
+            <!--<i class="bx bx-chevron-down"></i>-->
+        </div>
+    </nav>
+
+    <!-- sidebar -->
+
+    <input type="checkbox" id="toggle">
+    <label class="side-toggle" for="toggle"><span class="fas fa-bars"></span></label>
+
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <span class=""></span>
+            <p> Pmj Scan'n go</p>
+        </div>
+        <div class="sidebar-menu">
+            <span class="fas fa-house-user"></span>
+            <p><a href="dashboard.html">Home</a></p>
+        </div>
+        <div class="sidebar-menu">
+            <span class="fas fa-users"></span>
+            <p><a href="test.html">Staff Overview</a></p>
+        </div>
+        <div class="sidebar-menu">
+            <span class="fas fa-user"></span>
+            <p><a href="profile.html">Admin Profile</a></p>
+        </div>
+        <div class="sidebar-menu">
+            <!--<span class="fas fa-right-from-bracket"></span>-->
+            <span class="fas fa-door-open"></span>
+            
+                <p><a href="/logout/">Logout</a></p>
+            
+            
+            <!--<p><a href="login.html">Logout</a></p>-->
+        </div>
+    </div>
+
+    <!-- main dashboard -->
+    <main>
+        
+        <div class="dashboard-container">
+            <!-- 3 cards top -->
+            <div class="card total1">
+                <div class="info">
+                    <div class="info-detail">
+                        <h3>Total Staff</h3>
+                        <p>Lorem ipsum dolor</p>
+                        <h2>200<span> Staff</span></h2>
+                    </div>
+                    <div class="info-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card total2">
+                <div class="info">
+                    <div class="info-detail">
+                        <h3>Total Check-In</h3>
+                        <p>Lorem ipsum dolor</p>
+                        <h2>150<span> Vehicle</span></h2>
+                    </div>
+                    <div class="info-image">
+                        <i class="fas fa-car"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card total3">
+                <div class="info">
+                    <div class="info-detail">
+                        <h3>Total Register Vehicle</h3>
+                        <p>Lorem ipsum dolor</p>
+                        <h2>500<span> Vehicle</span></h2>
+                    </div>
+                    <div class="info-image">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-grid">
+            <div class="projects">
+                <div class="car">
+                    <div class="car-header">
+                        <h2>Staff Check In & Check Out</h2>
+
+                        <!--<button>See all <span class="fas fa-angles-right"></span></button>-->
+                    </div>
+
+                    <div class="car-body">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <td>No</td>
+                                    <td>Name</td>
+                                    <td>Id</td>
+                                    <td>Date</td>
+                                    <td>Plate Number</td>
+                                    <td>Check In</td>
+                                    <td>Check Out</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Ali Bin Jeman</td>
+                                    <td>AA01</td>
+                                    <td>21-09-2022</td>
+                                    <td>JAT3201</td>
+                                    <td>08:34:20</td>
+                                    <td>20:30:45</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Minah</td>
+                                    <td>AB02</td>
+                                    <td>21-09-2022</td>
+                                    <td>JBT1292</td>
+                                    <td>08:40:34</td>
+                                    <td>13:20:34</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Salman</td>
+                                    <td>AB03</td>
+                                    <td>22-09-2022</td>
+                                    <td>JJD6790</td>
+                                    <td>09:32:10</td>
+                                    <td>18:30:22</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Ali Bin Jeman</td>
+                                    <td>AA01</td>
+                                    <td>21-09-2022</td>
+                                    <td>JAT3201</td>
+                                    <td>08:34:20</td>
+                                    <td>20:30:45</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Minah</td>
+                                    <td>AB02</td>
+                                    <td>21-09-2022</td>
+                                    <td>JBT1292</td>
+                                    <td>08:40:34</td>
+                                    <td>13:20:34</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Salman</td>
+                                    <td>AB03</td>
+                                    <td>22-09-2022</td>
+                                    <td>JJD6790</td>
+                                    <td>09:32:10</td>
+                                    <td>18:30:22</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

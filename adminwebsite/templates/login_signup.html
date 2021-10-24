@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup Form Pmj Scan'n Go Website</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<style>
+			*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Poppins', sans-serif;
+		}
+		html,body {
+			display: grid;
+			height: 100%;
+			width: 100%;
+			place-items: center;
+			background: #ecb54eef;
+		}
+		.colume{
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+		.colume .description {
+			font-size: 50px;
+			font-weight: bold;
+			font-family: 'courier';
+		}
+		.wrapper {
+			overflow: hidden;
+			max-width: 1500px;
+			background: #fff;
+			padding: 50px;
+			padding-top: 1rem;
+			border-radius: 50px;
+			box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+		}
+		.wrapper .title-text {
+			display: flex;
+			width: 200%;
+		}
+		.wrapper .title-text .title {
+			width: 50%;
+			font-size: 35px;
+			font-weight: 600;
+			text-align: center;
+			transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+		}
+		.wrapper .form-container{
+			width: 100%;
+			overflow: hidden;
+		}
+		.form-container .slide-controls{
+			position: relative;
+			display: flex;
+			height: 50px;
+			width: 100%;
+			overflow: hidden;
+			border-radius: 5px;
+			margin: 30px 0 10px 0;
+			justify-content: space-between;
+			border: 1px solid lightgrey;
+		}
+		.slide-controls .slide{
+			height: 100%;
+			width: 100%;
+			z-index: 1;
+			color: #fff;
+			font-size: 18px;
+			font-weight: 600;
+			text-align: center;
+			line-height: 48px;
+			cursor: pointer;
+			transition: all 0.6s ease;
+		}
+		.slide-controls .signup{
+			color: #000;
+		}
+		.slide-controls .slide-tab{
+			position: absolute;
+			height: 100%;
+			width: 50%;
+			left: 0;
+			z-index: 0;
+			border-radius: 5px;
+			transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+			background: -webkit-linear-gradient(left, #ff105f, #ffad06);
+		}
+		input[type="radio"]{
+			display: none;
+		}
+		#signup:checked ~ .slide-tab{
+			left: 50%;
+		}
+		#signup:checked ~ .signup{
+			color: #fff;
+		}
+		#signup:checked ~ .login{
+			color: #000;
+		}
+		.form-container .form-inner{
+			display: flex;
+			width: 200%;
+		}
+		.form-container .form-inner form{
+			width: 50%;
+			transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+		}
+		.form-inner form .field{
+			height: 45px;
+			width: 100%;
+			margin-top: 20px;
+			display: flex;
+			position: relative;
+		}
+		.form-inner form .field input{
+			height: 100%;
+			width: 100%;
+			outline: none;
+			padding-left: 15px;
+			font-size: 17px;
+			border-radius: 5px;
+			border: 1px solid lightgrey;
+			/*border-bottom-width: 2px;*/
+			transition: all 0.4s ease;
+		}
+		form .field .icons{
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		.field .icons span{
+			height: 25px;
+			width: 25px;
+			border: 2px solid;
+			border-radius: 50%;
+			line-height: 25px;
+			display: none;
+		}
+		.field .icons span.icon1{
+			color: #e74c3c;
+			border-color: #e74c3c;
+		}
+		.field .icons span.icon2{
+			color: #27ae60; 
+			border-color: #27ae60; 
+		}
+		form .error-text{
+			position: relative;
+			margin: 15px 0 -5px 0;
+			background: #e74c3c;
+			color: #fceae8;
+			font-size: 17px;
+			padding: 8px;
+			border-radius: 5px;
+			display: none;
+		}
+		form .error-text:before{
+			position: absolute;
+			content: '';
+			height: 15px;
+			width: 15px;
+			background: #e74c3c;
+			right: 20px;
+			top: -7px;
+			transform: rotate(45deg);
+		}
+		.form-inner form .field input:focus{
+			border-color: #fc83bb;
+		}
+		.form-inner form .pass-link{
+			margin-top: 5px;
+		}
+		.form-inner form .pass-link a,
+		.form-inner form .signup-link a{
+			color: #fa4299;
+			text-decoration: none;
+		}
+		.form-inner form .signup-link{
+			text-align: center;
+			margin-top: 30px;
+		}
+
+		.form-inner form .pass-link a:hover,
+		.form-inner form .signup-link a:hover{
+			text-decoration: underline;
+		}
+
+		form .field input[type="submit"]{
+			color: #fff;
+			font-size: 20px;
+			font-weight: 600;
+			padding-left: 0px;
+			border: none;
+			cursor: pointer;
+			background: -webkit-linear-gradient(right, #ff105f, #A45D5D);
+		}
+
+	</style>
+</head>
+<body>
+    <div class="colume">
+    <p class="description">PMJ Scan'n Go</p>
+    </div>
+    <div class="wrapper"> 
+        <div class="title-text">
+            <div class="title login">Login Form</div>
+            <div class="title signup">Signup Form</div>
+         </div>
+         <div class="form-container">
+             <div class="slide-controls">
+                 <input type="radio" name="slider" id="login" checked>
+                 <input type="radio" name="slider" id="signup">
+                <label for="login" class="slide login">Login</label>
+                <label for="signup" class="slide signup">Signup</label>
+                <div class="slide-tab"></div>
+             </div>
+            <div class="form-inner">
+                
+				{% include 'login.html' %}
+				
+				
+
+            </div> 
+        </div>                          
+   </div>
+
+   <script>
+      const loginForm = document.querySelector("form.login");
+      const signupForm = document.querySelector("form.signup");
+      const loginBtn = document.querySelector("label.login");
+      const signupBtn = document.querySelector("label.signup");
+      const signupLink = document.querySelector(".signup-link a");
+      const loginText = document.querySelector(".title-text .login");
+      const signupText = document.querySelector(".title-text .signup");
+             
+      signupBtn.onclick = (()=>{
+       loginForm.style.marginLeft = "-50%";
+       loginText.style.marginLeft = "-50%";
+      });
+      loginBtn.onclick = (()=>{
+       loginForm.style.marginLeft = "0%";
+       loginText.style.marginLeft = "0%";
+      });
+      signupLink.onclick = (()=>{
+       signupBtn.click();
+       return false;
+      });
+
+   </script>
+
+   <script>   
+      const email = document.querySelector("#email");       
+      const icon1 = document.querySelector(".icon1");
+      const icon2 = document.querySelector(".icon2");
+      const errortext = document.querySelector(".error-text");
+      let regExp = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      
+      function check(){          
+       if(email.value.match(regExp)){
+           email.style.borderColor = "#27ae60";
+           icon1.style.display = "none";
+           icon2.style.display = "block";
+           errortext.style.display = "none";  
+      } else {
+           email.style.borderColor = "#e74c3c";
+           icon1.style.display = "block";
+           icon2.style.display = "none";
+           errortext.style.display = "block";
+      }
+      if(email.value == ""){
+          email.style.borderColor = "lightgrey";
+          icon1.style.display = "none";
+          icon2.style.display = "none";
+          error.style.display = "none";
+      }
+   }
+   </script>
+   
+   <script>
+       const username = document.querySelector("#username");
+
+       function validateForm(){
+           var nameRegex = /^[a-zA-Z\-]+$/;
+           var validfirstUsername = document.frm.firstName.value.match(nameRegex);
+           if (validUsername == null) {
+               alert("Your first name is not valid. Only characters A-Z, a-z and '-' are  acceptable.");
+               document.frm.firstName.focus();
+           return false;
+           }
+        }
+   </script>
+
+   <script>
+      const password = document.querySelector("#password"); 
+
+     function checkIn(){          
+           var newPassword = document.getElementById('changePasswordForm').newPassword.value;
+           var minNumberofChars = 6;
+           var maxNumberofChars = 16;
+           var regularExpression  = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+           alert(newPassword); 
+           if(newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars){
+               return false;
+           }
+           if(!regularExpression.test(newPassword)) {
+               alert("password should contain atleast one number and one special character");
+               return false;
+           }
+       }
+   </script>   
+
+   <script>
+        const phonenumber = document.querySelector("#phonenumber");
+        const icon1 = document.querySelector(".icon1");
+        const icon2 = document.querySelector(".icon2");
+        const errortext = document.querySelector(".error-text");
+        let regExp = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/;
+
+      function check(){          
+       if(phonenumber.value.match(regExp)){
+       phonenumber.style.borderColor = "#27ae60";
+       icon1.style.display = "none";
+       icon2.style.display = "block";
+       errortext.style.display = "none";  
+      } else {
+       phonenumber.style.borderColor = "#e74c3c";
+       icon1.style.display = "block";
+       icon2.style.display = "none";
+       errortext.style.display = "block";
+      }
+      if(password.value == ""){
+           phonenumber.style.borderColor = "lightgrey";
+          icon1.style.display = "none";
+          icon2.style.display = "none";
+          error.style.display = "none";
+      }
+   }
+   </script>
+      
+   <script>
+       const username2 = document.querySelector("#username2");
+
+       function validateForm(){
+           var nameRegex = /^[a-zA-Z\-]+$/;
+           var validfirstUsername = document.frm.firstName.value.match(nameRegex);
+           if (validUsername == null) {
+               alert("Your first name is not valid. Only characters A-Z, a-z and '-' are  acceptable.");
+               document.frm.firstName.focus();
+           return false;
+           }
+        }
+   </script>
+
+   <script>
+       const password2 = document.querySelector("#password2");
+       
+       function checkIn(){          
+           var newPassword = document.getElementById('changePasswordForm').newPassword.value;
+           var minNumberofChars = 6;
+           var maxNumberofChars = 16;
+           var regularExpression  = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+           alert(newPassword); 
+           if(newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars){
+               return false;
+           }
+           if(!regularExpression.test(newPassword)) {
+               alert("password should contain atleast one number and one special character");
+               return false;
+           }
+       }
+   </script>   
+
+   <script>
+       const confirmpassword = document.querySelector("#confirmpassword");
+   
+       function checkIn(){          
+           var newPassword = document.getElementById('changePasswordForm').newPassword.value;
+           var minNumberofChars = 6;
+           var maxNumberofChars = 16;
+           var regularExpression  = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+           alert(newPassword); 
+           if(newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars){
+               return false;
+           }
+           if(!regularExpression.test(newPassword)) {
+               alert("password should contain atleast one number and one special character");
+               return false;
+           }
+       }
+   </script>   
+</body>
+</html>
